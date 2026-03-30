@@ -30,8 +30,8 @@ export interface DeviceContext {
   readonly adapter: GPUAdapter
   /** The WebGPU logical device. Use this for all resource creation and queue operations. */
   readonly device: GPUDevice
-  /** The adapter's reported info (vendor, architecture, etc.). */
-  readonly adapterInfo: GPUAdapterInfo
+  /** The adapter's reported info (vendor, architecture, etc.). Null if the browser doesn't support requestAdapterInfo(). */
+  readonly adapterInfo: GPUAdapterInfo | null
 }
 
 /**
@@ -82,14 +82,18 @@ export async function initDevice(options: DeviceOptions = {}): Promise<DeviceCon
 
   const device = await adapter.requestDevice({
     requiredFeatures,
-    requiredLimits: options.requiredLimits,
+    ...(options.requiredLimits !== undefined ? { requiredLimits: options.requiredLimits } : {}),
   })
 
   device.lost.then((info) => {
     console.error(`WebGPU device lost: "${info.message}" (reason: ${info.reason})`)
   })
 
-  const adapterInfo = await adapter.requestAdapterInfo()
+  // requestAdapterInfo is available in Chrome 121+ / Safari 18.2+; guard for older browsers.
+  const adapterInfo: GPUAdapterInfo | null =
+    'requestAdapterInfo' in adapter
+      ? await (adapter as GPUAdapter & { requestAdapterInfo(): Promise<GPUAdapterInfo> }).requestAdapterInfo()
+      : null
 
   return { adapter, device, adapterInfo }
 }

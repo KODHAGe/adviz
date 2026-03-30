@@ -22,7 +22,7 @@ export function createVertexBuffer(
   label?: string
 ): GPUBuffer {
   const buffer = device.createBuffer({
-    label,
+    ...(label !== undefined ? { label } : {}),
     size: data.byteLength,
     usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
   })
@@ -49,7 +49,7 @@ export function createIndexBuffer(
   label?: string
 ): GPUBuffer {
   const buffer = device.createBuffer({
-    label,
+    ...(label !== undefined ? { label } : {}),
     size: data.byteLength,
     usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
   })
@@ -71,7 +71,7 @@ export function createIndexBuffer(
 export function createUniformBuffer(device: GPUDevice, byteSize: number, label?: string): GPUBuffer {
   const alignedSize = Math.ceil(byteSize / 16) * 16
   return device.createBuffer({
-    label,
+    ...(label !== undefined ? { label } : {}),
     size: alignedSize,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
   })
@@ -98,7 +98,7 @@ export function createStorageBuffer(
 ): GPUBuffer {
   const size = data !== undefined ? data.byteLength : byteSize
   const buffer = device.createBuffer({
-    label,
+    ...(label !== undefined ? { label } : {}),
     size,
     usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC,
   })

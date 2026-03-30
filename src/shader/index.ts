@@ -14,7 +14,7 @@
  * `, 'my-vertex-shader')
  */
 export function createShaderModule(device: GPUDevice, code: string, label?: string): GPUShaderModule {
-  return device.createShaderModule({ label, code })
+  return device.createShaderModule({ ...(label !== undefined ? { label } : {}), code })
 }
 
 /**
@@ -148,7 +148,7 @@ export function createBindGroup(
   label?: string
 ): GPUBindGroup {
   return device.createBindGroup({
-    label,
+    ...(label !== undefined ? { label } : {}),
     layout,
     entries: entries.map((resource, binding) => ({
       binding,

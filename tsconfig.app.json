@@ -8,7 +8,8 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["@webgpu/types"]
   },
   "include": ["src/**/*", "examples/**/*", "vite.config.ts", "eslint.config.js"]
 }
