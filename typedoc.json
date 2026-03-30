@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "entryPointStrategy": "resolve",
+  "out": "docs/api",
+  "name": "adviz",
+  "readme": "README.md",
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "groupOrder": ["Core", "Math", "Renderer", "Geometry", "Shader", "Scene", "Animation", "Input", "*"]
+}

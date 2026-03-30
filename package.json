@@ -1,0 +1,59 @@
+{
+  "name": "adviz",
+  "version": "0.1.0",
+  "description": "LLM-led WebGPU creative graphics framework",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./core": "./dist/core.js",
+    "./math": "./dist/math.js",
+    "./renderer": "./dist/renderer.js",
+    "./geometry": "./dist/geometry.js",
+    "./shader": "./dist/shader.js",
+    "./scene": "./dist/scene.js",
+    "./animation": "./dist/animation.js",
+    "./input": "./dist/input.js"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:types": "tsc --project tsconfig.json",
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:single": "vitest run --reporter=verbose",
+    "lint": "eslint src examples",
+    "lint:fix": "eslint src examples --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"examples/**/*.ts\"",
+    "typecheck": "tsc --project tsconfig.app.json --noEmit",
+    "docs": "typedoc"
+  },
+  "keywords": [
+    "webgpu",
+    "graphics",
+    "creative-coding",
+    "visualization",
+    "llm"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.0",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "jsdom": "^29.0.1",
+    "prettier": "^3.5.3",
+    "typedoc": "^0.28.4",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.2"
+  }
+}

@@ -1,0 +1,47 @@
+name: Copilot Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  copilot-review:
+    name: Copilot Review
+    runs-on: ubuntu-latest
+    # Only run on non-draft PRs
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Copilot code review
+        uses: github/copilot-code-review-action@v1
+        with:
+          instructions: |
+            Review this pull request against the adviz framework conventions:
+
+            1. **API naming**: All new public functions must use the project verb vocabulary:
+               create*, update*, destroy*, init*. Flag any deviations.
+
+            2. **JSDoc completeness**: Every exported function and class must have
+               a JSDoc comment with at least one @example. Flag missing documentation.
+
+            3. **TypeScript strictness**: Flag any `any` types, unsafe casts,
+               or unchecked array accesses (missing `?? fallback`).
+
+            4. **WGSL conventions**: Entry points must be named vs_main, fs_main, cs_main.
+               Compute shaders must guard with arrayLength(). Structs must use named
+               VertexInput/VertexOutput patterns.
+
+            5. **Builder pattern**: Any new constructor-style API with >4 required params
+               should use the Builder pattern (chainable methods + .build()).
+
+            6. **Immutability**: Math types (Vec2/3/4, Mat4, Color) operations must
+               return new instances — never mutate `this`.
+
+            Only comment on genuine violations of the above. Do not comment on style,
+            formatting (handled by Prettier), or general best practices.
