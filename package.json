@@ -20,7 +20,7 @@
   "scripts": {
     "build": "vite build",
     "build:types": "tsc --project tsconfig.json",
-    "dev": "vite",
+    "dev": "VITE_MODE=demo vite",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -29,7 +29,9 @@
     "lint:fix": "eslint src examples --fix",
     "format": "prettier --write \"src/**/*.ts\" \"examples/**/*.ts\"",
     "typecheck": "tsc --project tsconfig.app.json --noEmit",
-    "docs": "typedoc"
+    "docs": "typedoc",
+    "preview": "VITE_MODE=demo vite preview",
+    "build:demo": "VITE_MODE=demo vite build"
   },
   "keywords": [
     "webgpu",

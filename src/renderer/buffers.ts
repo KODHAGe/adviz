@@ -93,10 +93,10 @@ export function createUniformBuffer(device: GPUDevice, byteSize: number, label?:
 export function createStorageBuffer(
   device: GPUDevice,
   byteSize: number,
-  data?: ArrayBuffer,
+  data?: ArrayBuffer | ArrayBufferView,
   label?: string
 ): GPUBuffer {
-  const size = data !== undefined ? data.byteLength : byteSize
+  const size = data !== undefined ? (data instanceof ArrayBuffer ? data.byteLength : data.byteLength) : byteSize
   const buffer = device.createBuffer({
     ...(label !== undefined ? { label } : {}),
     size,
