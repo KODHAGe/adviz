@@ -3,50 +3,8 @@
   "version": "0.1.0",
   "description": "LLM-led WebGPU creative graphics framework",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./core": {
-      "types": "./dist/core/index.d.ts",
-      "default": "./dist/core.js"
-    },
-    "./math": {
-      "types": "./dist/math/index.d.ts",
-      "default": "./dist/math.js"
-    },
-    "./renderer": {
-      "types": "./dist/renderer/index.d.ts",
-      "default": "./dist/renderer.js"
-    },
-    "./geometry": {
-      "types": "./dist/geometry/index.d.ts",
-      "default": "./dist/geometry.js"
-    },
-    "./shader": {
-      "types": "./dist/shader/index.d.ts",
-      "default": "./dist/shader.js"
-    },
-    "./scene": {
-      "types": "./dist/scene/index.d.ts",
-      "default": "./dist/scene.js"
-    },
-    "./animation": {
-      "types": "./dist/animation/index.d.ts",
-      "default": "./dist/animation.js"
-    },
-    "./input": {
-      "types": "./dist/input/index.d.ts",
-      "default": "./dist/input.js"
-    }
-  },
   "scripts": {
     "build": "vite build",
-    "build:types": "tsc --project tsconfig.json",
     "dev": "VITE_MODE=demo vite",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -57,9 +15,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"examples/**/*.ts\"",
     "typecheck": "tsc --project tsconfig.app.json --noEmit",
     "docs": "typedoc",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "publish:npm": "pnpm build && changeset publish",
     "publish:jsr": "npx jsr publish",
     "preview": "VITE_MODE=demo vite preview",
     "build:demo": "VITE_MODE=demo vite build"
@@ -74,7 +29,6 @@
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.0.10",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
@@ -91,10 +45,5 @@
     "vite": "^8.0.3",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.2"
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "sideEffects": false
+  }
 }

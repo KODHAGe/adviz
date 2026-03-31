@@ -2,25 +2,20 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+    tags:
+      - 'v*'
 
 jobs:
-  release:
-    name: Release
+  publish-jsr:
+    name: Publish to JSR
     runs-on: ubuntu-latest
     permissions:
-      contents: write      # create tags + GitHub releases
-      pull-requests: write # changeset PR
-      id-token: write      # npm provenance
+      contents: read
+      id-token: write  # required for JSR OIDC auth (no token needed)
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -32,7 +27,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -43,22 +37,5 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Build
-        run: pnpm build
-
-      - name: Create Release PR or Publish
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish
-          title: "chore: version packages"
-          commit: "chore: version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publish to JSR
-        if: steps.changesets.outputs.published == 'true'
-        run: pnpm publish:jsr
-        env:
-          JSR_TOKEN: ${{ secrets.JSR_TOKEN }}
+        run: npx jsr publish
