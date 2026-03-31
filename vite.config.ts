@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config'
 import { resolve } from 'path'
+import dts from 'vite-plugin-dts'
 
 const isDemoMode = process.env['VITE_MODE'] === 'demo'
 
@@ -21,6 +22,14 @@ export default defineConfig(
       }
     : // ── Library build (pnpm build) ────────────────────────────────────
       {
+        plugins: [
+          dts({
+            include: ['src'],
+            outDir: 'dist',
+            tsconfigPath: './tsconfig.json',
+            insertTypesEntry: false,
+          }),
+        ],
         build: {
           lib: {
             entry: {
