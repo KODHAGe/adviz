@@ -85,7 +85,7 @@ export class Vec2 {
   }
 
   toString(): string {
-    return `Vec2(${this.x}, ${this.y})`
+    return `Vec2(${String(this.x)}, ${String(this.y)})`
   }
 }
 

@@ -63,17 +63,17 @@ export function createLoop(callback: FrameCallback): Loop {
   }
 
   return {
-    start() {
+    start(): void {
       if (rafId !== null) return
       rafId = requestAnimationFrame(tick)
     },
-    stop() {
+    stop(): void {
       if (rafId !== null) {
         cancelAnimationFrame(rafId)
         rafId = null
       }
     },
-    get running() {
+    get running(): boolean {
       return rafId !== null
     },
   }

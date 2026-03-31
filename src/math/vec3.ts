@@ -96,7 +96,7 @@ export class Vec3 {
   }
 
   toString(): string {
-    return `Vec3(${this.x}, ${this.y}, ${this.z})`
+    return `Vec3(${String(this.x)}, ${String(this.y)}, ${String(this.z)})`
   }
 }
 

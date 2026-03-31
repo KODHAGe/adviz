@@ -30,13 +30,13 @@ export function createNode(): SceneNode {
   let scale = VEC3_ONE.clone()
 
   return {
-    get position() { return position },
+    get position(): Vec3 { return position },
     set position(v: Vec3) { position = v },
-    get rotation() { return rotation },
+    get rotation(): Vec3 { return rotation },
     set rotation(v: Vec3) { rotation = v },
-    get scale() { return scale },
+    get scale(): Vec3 { return scale },
     set scale(v: Vec3) { scale = v },
-    worldMatrix() {
+    worldMatrix(): Mat4 {
       const t = Mat4Class.translation(position)
       const rx = Mat4Class.rotationX(rotation.x)
       const ry = Mat4Class.rotationY(rotation.y)

@@ -66,7 +66,7 @@ export class Vec4 {
   }
 
   toString(): string {
-    return `Vec4(${this.x}, ${this.y}, ${this.z}, ${this.w})`
+    return `Vec4(${String(this.x)}, ${String(this.y)}, ${String(this.z)}, ${String(this.w)})`
   }
 }
 

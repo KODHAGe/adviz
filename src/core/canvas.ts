@@ -90,7 +90,7 @@ export function createCanvas(options: CanvasOptions = {}): ManagedCanvas {
     height = h
     element.width = Math.round(w * pixelRatio)
     element.height = Math.round(h * pixelRatio)
-    resizeCallbacks.forEach((cb) => cb(w, h, pixelRatio))
+    resizeCallbacks.forEach((cb) => { cb(w, h, pixelRatio) })
   }
 
   applySize(width, height)
@@ -107,29 +107,29 @@ export function createCanvas(options: CanvasOptions = {}): ManagedCanvas {
   }
 
   return {
-    get element() {
+    get element(): HTMLCanvasElement {
       return element
     },
-    get width() {
+    get width(): number {
       return width
     },
-    get height() {
+    get height(): number {
       return height
     },
-    get pixelRatio() {
+    get pixelRatio(): number {
       return pixelRatio
     },
-    get physicalWidth() {
+    get physicalWidth(): number {
       return Math.round(width * pixelRatio)
     },
-    get physicalHeight() {
+    get physicalHeight(): number {
       return Math.round(height * pixelRatio)
     },
-    onResize(callback: ResizeCallback) {
+    onResize(callback: ResizeCallback): () => void {
       resizeCallbacks.add(callback)
       return () => resizeCallbacks.delete(callback)
     },
-    destroy() {
+    destroy(): void {
       observer?.disconnect()
       element.remove()
     },

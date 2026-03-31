@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { Vec2, vec2, VEC2_ZERO } from './vec2.js'
-import { Vec3, vec3, VEC3_UP, VEC3_FORWARD } from './vec3.js'
-import { Vec4, vec4 } from './vec4.js'
+import { vec2, VEC2_ZERO } from './vec2.js'
+import { vec3, VEC3_UP, VEC3_FORWARD } from './vec3.js'
+import { vec4 } from './vec4.js'
 import { Mat4 } from './mat4.js'
-import { Color, color, Color as ColorClass } from './color.js'
+import { color, Color as ColorClass } from './color.js'
 import { clamp, lerp, smoothstep, approxEqual, degToRad } from './utils.js'
 
 describe('Vec2', () => {

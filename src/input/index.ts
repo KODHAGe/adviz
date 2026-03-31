@@ -60,7 +60,7 @@ export function createPointerTracker(element: HTMLElement): {
 
   return {
     state,
-    destroy() {
+    destroy(): void {
       element.removeEventListener('pointermove', onPointerMove)
       element.removeEventListener('pointerdown', onPointerDown)
       element.removeEventListener('pointerup', onPointerUp)
@@ -90,7 +90,7 @@ export function createKeyboardTracker(): { keys: KeyState; destroy: () => void }
 
   return {
     keys: held,
-    destroy() {
+    destroy(): void {
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
     },

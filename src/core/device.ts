@@ -52,6 +52,8 @@ export interface DeviceContext {
  * })
  */
 export async function initDevice(options: DeviceOptions = {}): Promise<DeviceContext> {
+  // @webgpu/types types navigator.gpu as always-defined; guard is intentional for runtime safety.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!navigator.gpu) {
     throw new Error(
       'WebGPU is not supported in this browser. ' +
@@ -85,7 +87,7 @@ export async function initDevice(options: DeviceOptions = {}): Promise<DeviceCon
     ...(options.requiredLimits !== undefined ? { requiredLimits: options.requiredLimits } : {}),
   })
 
-  device.lost.then((info) => {
+  void device.lost.then((info) => {
     console.error(`WebGPU device lost: "${info.message}" (reason: ${info.reason})`)
   })
 

@@ -11,7 +11,7 @@ export class Color {
     public r: number,
     public g: number,
     public b: number,
-    public a: number = 1
+    public a = 1
   ) {}
 
   /**
@@ -24,17 +24,12 @@ export class Color {
   static fromHex(hex: string): Color {
     const h = hex.replace('#', '')
     if (h.length === 3) {
-      const r = parseInt(h[0]! + h[0]!, 16) / 255
-      const g = parseInt(h[1]! + h[1]!, 16) / 255
-      const b = parseInt(h[2]! + h[2]!, 16) / 255
-      return new Color(r, g, b)
+      const c0 = h.charAt(0), c1 = h.charAt(1), c2 = h.charAt(2)
+      return new Color(parseInt(c0 + c0, 16) / 255, parseInt(c1 + c1, 16) / 255, parseInt(c2 + c2, 16) / 255)
     }
     if (h.length === 4) {
-      const r = parseInt(h[0]! + h[0]!, 16) / 255
-      const g = parseInt(h[1]! + h[1]!, 16) / 255
-      const b = parseInt(h[2]! + h[2]!, 16) / 255
-      const a = parseInt(h[3]! + h[3]!, 16) / 255
-      return new Color(r, g, b, a)
+      const c0 = h.charAt(0), c1 = h.charAt(1), c2 = h.charAt(2), c3 = h.charAt(3)
+      return new Color(parseInt(c0 + c0, 16) / 255, parseInt(c1 + c1, 16) / 255, parseInt(c2 + c2, 16) / 255, parseInt(c3 + c3, 16) / 255)
     }
     if (h.length === 6) {
       const r = parseInt(h.slice(0, 2), 16) / 255
@@ -89,7 +84,11 @@ export class Color {
 
   /** Returns a CSS rgba() string. */
   toCSSString(): string {
-    return `rgba(${Math.round(this.r * 255)}, ${Math.round(this.g * 255)}, ${Math.round(this.b * 255)}, ${this.a})`
+    const r = String(Math.round(this.r * 255))
+    const g = String(Math.round(this.g * 255))
+    const b = String(Math.round(this.b * 255))
+    const a = String(this.a)
+    return `rgba(${r}, ${g}, ${b}, ${a})`
   }
 
   /** Returns a copy of this Color. */
@@ -98,7 +97,7 @@ export class Color {
   }
 
   toString(): string {
-    return `Color(${this.r}, ${this.g}, ${this.b}, ${this.a})`
+    return `Color(${String(this.r)}, ${String(this.g)}, ${String(this.b)}, ${String(this.a)})`
   }
 }
 
