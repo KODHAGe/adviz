@@ -25,6 +25,7 @@ export default defineConfig(
         plugins: [
           dts({
             include: ['src'],
+            exclude: ['src/**/*.test.ts'],
             outDir: 'dist',
             tsconfigPath: './tsconfig.json',
             insertTypesEntry: false,

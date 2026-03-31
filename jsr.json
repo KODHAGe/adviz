@@ -1,0 +1,25 @@
+{
+  "name": "@adviz/adviz",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./math": "./src/math/index.ts",
+    "./core": "./src/core/index.ts",
+    "./renderer": "./src/renderer/index.ts",
+    "./shader": "./src/shader/index.ts",
+    "./geometry": "./src/geometry/index.ts",
+    "./scene": "./src/scene/index.ts",
+    "./animation": "./src/animation/index.ts",
+    "./input": "./src/input/index.ts"
+  },
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "LICENSE"
+    ],
+    "exclude": [
+      "src/**/*.test.ts"
+    ]
+  }
+}

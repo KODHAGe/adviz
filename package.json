@@ -57,6 +57,10 @@
     "format": "prettier --write \"src/**/*.ts\" \"examples/**/*.ts\"",
     "typecheck": "tsc --project tsconfig.app.json --noEmit",
     "docs": "typedoc",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "publish:npm": "pnpm build && changeset publish",
+    "publish:jsr": "npx jsr publish",
     "preview": "VITE_MODE=demo vite preview",
     "build:demo": "VITE_MODE=demo vite build"
   },
@@ -70,6 +74,7 @@
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
+    "@changesets/cli": "^2.30.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.0.10",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
