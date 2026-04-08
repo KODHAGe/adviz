@@ -27,6 +27,7 @@ export {
   COLOR_GREEN,
   COLOR_BLUE,
 } from './color.js'
+export { Quat, quat, QUAT_IDENTITY } from './quat.js'
 export {
   PI,
   TWO_PI,
